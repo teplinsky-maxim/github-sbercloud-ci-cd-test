@@ -31,6 +31,7 @@ jobs:
           TEST_ENV_1: ${{ secrets.TEST_ENV }}
         run: |
           echo env
-          whoami
+          apt-get update -qq
+          apt-get install -qq git sshpass
           echo "$TEST_ENV_1"
         
