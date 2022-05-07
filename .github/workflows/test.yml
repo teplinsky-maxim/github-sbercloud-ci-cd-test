@@ -41,6 +41,6 @@ jobs:
           echo "creating directory"
           sshpass -p $ECS_PASS ssh -o StrictHostKeyChecking=no $ESC_USER@$ECS_IP "[ -d $REMOTE_BUILD_DIR ] && echo $ECS_PASS | sudo -S rm -rf $REMOTE_BUILD_DIR; mkdir -p $REMOTE_BUILD_DIR"
           echo "copying rep"
-          sshpass -p $ESC_USER scp -r $(pwd) $ESC_USER@$ECS_IP:/home/$ESC_USER/build
+          sshpass -p $ECS_PASS scp -r $(pwd) $ESC_USER@$ECS_IP:/home/$ESC_USER/build
 
         
