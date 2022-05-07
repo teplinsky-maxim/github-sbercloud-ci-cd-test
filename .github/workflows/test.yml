@@ -33,11 +33,12 @@ jobs:
           ESC_USER: ${{ secrets.ESC_USER }}
         run: |
           echo env
-          sudo apt-get update -qq
-          sudo apt-get install -qq git sshpass
-          sshpass -p $ECS_PASS whoami
-          sshpass -p $ECS_PASS ls
-          sshpass -p $ECS_PASS touch index.html 
-          sshpass -p $ECS_PASS ls
+          ls -al
+          export DEBIAN_FRONTEND=noninteractive
+          sudo apt update && sudo apt install sshpass -y
+          REMOTE_BUILD_DIR=/home/$ESC_USER/build
+          echo $REMOTE_BUILD_DIR
+          sshpass -p $ECS_PASS ssh -o StrictHostKeyChecking=no $ESC_USER@$MASTER_IP "[ -d $REMOTE_BUILD_DIR ] && echo $ECS_PASS | sudo -S rm -rf $REMOTE_BUILD_DIR; mkdir -p $REMOTE_BUILD_DIR"
+          sshpass -p $MASTER_PASS scp -r $(pwd) $MASTER_USERNAME@$MASTER_IP:/home/$MASTER_USERNAME/build
 
         
