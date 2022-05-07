@@ -35,6 +35,9 @@ jobs:
           echo env
           sudo apt-get update -qq
           sudo apt-get install -qq git sshpass
+          sshpass -p $ECS_PASS whoami
+          sshpass -p $ECS_PASS ls
           sshpass -p $ECS_PASS touch index.html 
+          sshpass -p $ECS_PASS ls
 
         
