@@ -31,5 +31,6 @@ jobs:
           TEST_ENV_1: ${{ secrets.TEST_ENV }}
         run: |
           echo env
+          whoami
           echo "$TEST_ENV_1"
         
