@@ -38,7 +38,7 @@ jobs:
           sudo apt update && sudo apt install sshpass -y
           REMOTE_BUILD_DIR=/home/$ESC_USER/build
           echo $REMOTE_BUILD_DIR
-          sshpass -p $ECS_PASS ssh -o StrictHostKeyChecking=no $ESC_USER@$MASTER_IP "[ -d $REMOTE_BUILD_DIR ] && echo $ECS_PASS | sudo -S rm -rf $REMOTE_BUILD_DIR; mkdir -p $REMOTE_BUILD_DIR"
-          sshpass -p $MASTER_PASS scp -r $(pwd) $MASTER_USERNAME@$MASTER_IP:/home/$MASTER_USERNAME/build
+          sshpass -p $ECS_PASS ssh -o StrictHostKeyChecking=no $ESC_USER@$ECS_IP "[ -d $REMOTE_BUILD_DIR ] && echo $ECS_PASS | sudo -S rm -rf $REMOTE_BUILD_DIR; mkdir -p $REMOTE_BUILD_DIR"
+          sshpass -p $ESC_USER scp -r $(pwd) $ESC_USER@$ECS_IP:/home/$ESC_USER/build
 
         
