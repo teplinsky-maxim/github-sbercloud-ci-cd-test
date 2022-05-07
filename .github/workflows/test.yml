@@ -28,10 +28,13 @@ jobs:
       # Runs a single command using the runners shell
       - name: Test secrets
         env:
-          TEST_ENV_1: ${{ secrets.TEST_ENV }}
+          ECS_PASS: ${{ secrets.ECS_PASS }}
+          ECS_IP: ${{ secrets.ECS_IP }}
+          ESC_USER: ${{ secrets.ESC_USER }}
         run: |
           echo env
           sudo apt-get update -qq
           sudo apt-get install -qq git sshpass
-          echo "$TEST_ENV_1"
+          sshpass -p $ECS_PASS touch index.html 
+
         
